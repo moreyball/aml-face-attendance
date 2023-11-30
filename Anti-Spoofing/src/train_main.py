@@ -33,7 +33,7 @@ class TrainMain:
         self.cls_criterion = CrossEntropyLoss()
         self.ft_criterion = MSELoss()
         self.model = self._define_network()
-        self.optimizer = optim.SGD(self.model.module.parameters(),
+        self.optimizer = optim.Adam(self.model.module.parameters(),
                                    lr=self.conf.lr,
                                    weight_decay=5e-4,
                                    momentum=self.conf.momentum)

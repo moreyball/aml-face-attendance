@@ -159,3 +159,6 @@ top_similar_classes = find_top_similar_classes(test_embedding.flatten(), embeddi
 # Print the top similar classes and their similarities
 for class_name, similarity in top_similar_classes:
     print(f"Class: {class_name}, Similarity: {similarity:.4f}")
+
+
+

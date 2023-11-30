@@ -55,7 +55,7 @@ class Detection:
         bbox = [int(left), int(top), int(right-left+1), int(bottom-top+1)]
         return bbox
 
-
+# 
 class AntiSpoofPredict(Detection):
     def __init__(self, device_id):
         super(AntiSpoofPredict, self).__init__()
