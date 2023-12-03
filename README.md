@@ -6,7 +6,7 @@ pip install -r requirements.txt
 ```
 
 ## Anti-spoofing
-For windows, for anti-spoofing, set PYTHONPATH to the directory of anti-spoofing folder.
+For windows, in order for anti-spoofing to work, set PYTHONPATH to the directory of anti-spoofing folder.
 1. Go to edit system environment variables in settings
 2. Add new system variable .
 3. Variable name is PYTHONPATH, value is directory of anti-spoofing folder
