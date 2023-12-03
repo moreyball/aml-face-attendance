@@ -1,5 +1,5 @@
 # aml-face-attendance
-To ensure that the code works, please install all the dependencies in the requirements.txt file. To do so, run the following command in the terminal.
+To ensure that the system works, please install all the dependencies in the requirements.txt file. To do so, run the following command in the terminal.
 
 ```bash
 pip install -r requirements.txt
