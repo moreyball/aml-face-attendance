@@ -13,7 +13,7 @@ For windows, for anti-spoofing, set PYTHONPATH to the directory of anti-spoofing
 
 ## Checkpoints for Metric Learing
 
-Due to github upload file restrictions, the checkpoint file is not uploaded. Please download the checkpoint files from the following [link](https://drive.google.com/drive/folders/1oxgZgjsnpTs-2LTgrqR2T5DX8j9_AyxI?usp=drive_link) and place it in the anti-spoofing/checkpoints folder. There should be 3 files in the checkpoints folder. We have also included the face classification model with softmax layer.
+Due to github upload file restrictions, the checkpoint file is not uploaded. Please download the checkpoints folder from the following [link](https://drive.google.com/drive/folders/1oxgZgjsnpTs-2LTgrqR2T5DX8j9_AyxI?usp=drive_link) and place it in the Anti-spoofing folder. We have also included the face classification model with softmax layer.
 
 
 
