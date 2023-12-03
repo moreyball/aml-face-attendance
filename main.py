@@ -121,7 +121,11 @@ class Face_Attendance_System:
     # Login Function
     def login(self, model_selection):
         # Anti-Spoofing System
-        label = 1
+        label = test(
+                image=self.most_recent_capture_arr,
+                model_dir='Anti-Spoofing/resources/anti_spoof_models',
+                device_id=0
+                )
         
         if label == 1:
                 # Capture the most recent frame from the webcam
@@ -237,7 +241,11 @@ class Face_Attendance_System:
     # Accept Register Function
     def accept_register(self, model_selection):
         # Anti-Spoofing System
-        label = 1
+        label = test(
+                image=self.register_capture,
+                model_dir='Anti-Spoofing/resources/anti_spoof_models',
+                device_id=0
+                )
         
         if label == 1:
             # Get Name from Entry Text
