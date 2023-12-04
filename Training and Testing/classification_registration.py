@@ -139,3 +139,88 @@ most_similar_class, similarity = find_most_similar_class(test_embedding.flatten(
 
 print(f"Test Image: {test_image_path}")
 print(f"Predicted Class: {most_similar_class}, Similarity: {similarity:.4f}")
+
+#%%
+import os
+import matplotlib.pyplot as plt
+import sklearn
+from sklearn.metrics import roc_curve, auc, f1_score
+from tqdm import tqdm
+
+#%%
+verification_data_dir = r'C:/Users/102774145/Desktop/verification_data'
+verification_pair_val = r'C:/Users/102774145/Desktop/verification_pairs_val.txt'
+
+#%%
+def calculate_similarity(img1, img2):
+    embedding1 = generate_embedding(img1).flatten()
+    embedding2 = generate_embedding(img2).flatten()
+
+    # Calculate cosine similarity
+    similarity = cosine_similarity([embedding1], [embedding2])[0][0]
+    
+    return similarity
+
+#%%
+verification_data = []
+with open(verification_pair_val, 'r') as file:
+    for line in file:
+        parts = line.strip().split()
+        trial1, trial2, result = os.path.join(verification_data_dir, parts[0]), \
+                                os.path.join(verification_data_dir, parts[1]), \
+                                int(parts[2])
+        verification_data.append((trial1, trial2, result))
+
+#%%
+similarities = []
+labels = []
+for data in tqdm(verification_data, desc="Calculating Similarities"):
+    similarity = calculate_similarity(data[0], data[1])
+    similarities.append(similarity)
+    labels.append(data[2])
+    
+#%%
+npz = np.load(r'C:/Users/102774145/Desktop/classification.npz')
+similarities = npz['similarities']
+labels = npz['labels']
+
+#%%
+# Iterate through test images and calculate true positive rate (TPR) and false positive rate (FPR)
+true_labels = []
+predicted_probabilities = []
+
+fpr, tpr, thresholds = roc_curve(labels, similarities)
+roc_auc = auc(fpr, tpr)
+
+# Calculate F1 scores for each threshold
+f1_scores = [f1_score(labels, similarities > threshold) for threshold in thresholds]
+
+# Find the threshold that maximizes the F1 score
+best_threshold_index = np.argmax(f1_scores)
+best_threshold = thresholds[best_threshold_index]
+best_f1_score = f1_scores[best_threshold_index]
+
+# Other Evaluation Metrics
+accuracy = sklearn.metrics.accuracy_score(labels, similarities > best_threshold)
+precision = sklearn.metrics.precision_score(labels, similarities > best_threshold)
+recall = sklearn.metrics.recall_score(labels, similarities > best_threshold)
+
+print(f"Best Threshold: {best_threshold}")
+print(f"Best F1 Score: {best_f1_score}")
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+
+# Plot ROC curve with the best threshold
+plt.figure(figsize=(10, 6))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.scatter(fpr[best_threshold_index], tpr[best_threshold_index], marker='o', color='red', label=f'Best Threshold (F1={best_f1_score:.2f})')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve with Best Threshold')
+plt.legend(loc="lower right")
+plt.show()
+
+#%%
+print(f'AUC: {roc_auc:.2f}')
