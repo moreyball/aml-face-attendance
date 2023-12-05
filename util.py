@@ -201,7 +201,7 @@ def recognize2(img, emb_path, model_selection):
                 # Update the best similarity_score and person
                 best_euclidean_distance = euclidean_distance
                 person = emb[:-7]  
-
+        print('---------------------------------------')
         # If the best euclidean_distance is less than the threshold
         if best_euclidean_distance < threshold:
             return person, best_euclidean_distance
