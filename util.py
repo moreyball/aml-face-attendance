@@ -173,7 +173,7 @@ def recognize2(img, emb_path, model_selection):
         threshold = 1 / 0.35788866877555847 - 1  #Threshold for Euclidean distance / 1.79416502
     elif model_selection == 2:
         face_embedding = model2.predict(img) # Extract the embeddings
-        threshold = 1 / 0.033828988671302795 - 1  # Threshold for Euclidean distance / 28.5604462
+        threshold = 15   # (1 / 0.033828988671302795 - 1)  # Threshold for Euclidean distance / 28.5604462
 
     # If no face is detected, then return 'NO_PERSON_FOUND'
     if len(face_embedding) == 0:
