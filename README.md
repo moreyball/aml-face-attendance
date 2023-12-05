@@ -13,7 +13,7 @@ For windows, in order for anti-spoofing to work, set PYTHONPATH to the directory
 
 ## Models
 
-Due to github upload file restrictions, the HDF5 models is not in the repo. Please download the files from the following [link]([https://drive.google.com/drive/folders/1oxgZgjsnpTs-2LTgrqR2T5DX8j9_AyxI?usp=drive_link](https://drive.google.com/drive/folders/1oxgZgjsnpTs-2LTgrqR2T5DX8j9_AyxI?usp=drive_link)) and place it in the Models folder.
+Due to github upload file restrictions, the HDF5 models is not in the repo. Please download the files from the following [link]((https://drive.google.com/drive/folders/1oxgZgjsnpTs-2LTgrqR2T5DX8j9_AyxI?usp=drive_link)) and place it in the Models folder.
 
 ## How to run the system
 1. Run the main.py file
