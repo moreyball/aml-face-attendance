@@ -8,4 +8,4 @@ Pillow==9.3.0
 tensorboardX==2.5.1
 cmake
 dlib
-tensorflow
+
